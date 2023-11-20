@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <Board />
+      <div className="container mx-auto">
+        <Board />
+      </div>
     </main>
   );
 }
