@@ -1,14 +1,36 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Avatar from "react-avatar";
 import { useBoardStore } from "@/store/BoardStore";
+import { fetchSuggestion } from "@/lib/fetchSuggestion";
 
 function Header() {
+  const [board, searchString, setSearchString] = useBoardStore((state) => [
+    state.board,
+    state.searchString,
+    state.setSearchString,
+  ]);
 
-  const [searchString , setSearchString] = useBoardStore((state) => [state.searchString , state.setSearchString])
+  const [loading, setLoading] = useState<boolean>(false);
+  const [suggestion, setSuggestion] = useState<string>("");
+
+  useEffect(() => {
+    if (board.columns.size === 0) return;
+
+    setLoading(true);
+
+    const fetchSuggestionFunc = async () => {
+      const suggestion = await fetchSuggestion(board);
+      console.log(suggestion);
+      setSuggestion(suggestion);
+      setLoading(false);
+    };
+
+    fetchSuggestionFunc();
+  }, [board]);
 
   return (
     <header>
@@ -35,7 +57,7 @@ function Header() {
               type="text"
               placeholder="Search..."
               className="flex-1 outline-none p-2"
-              onChange={e => setSearchString(e.target.value)}
+              onChange={(e) => setSearchString(e.target.value)}
             />
             <button type="submit" hidden>
               Search
@@ -49,9 +71,17 @@ function Header() {
 
       {/* AI Suggestion */}
       <div className="flex items-center py-2 justify-center md:py-5">
-        <p className="flex items-center text-sm font-light p-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text0[#0055d1] mr-1">
-          <UserCircleIcon className="inline-block h-10 w-10 mr-1 text-[#0055D1]" />
-          GPT is summarising your tasks...
+        <p className="flex items-center text-sm font-light p-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#0055d1] mr-1">
+          <UserCircleIcon
+            className={`${
+              loading ? "animate-spin" : ""
+            } inline-block h-10 w-10 mr-1 text-[#0055D1]`}
+          />
+          {loading
+            ? "Thinking..."
+            : suggestion
+            ? suggestion
+            : "GPT is summarising your tasks..."}
         </p>
       </div>
     </header>
