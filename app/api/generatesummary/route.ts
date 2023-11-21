@@ -5,7 +5,6 @@ export async function POST(request: Request) {
   const { todos } = await request.json();
 
   try {
-    // !: This is sending too many requests.
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo", // Replace with the desired model name
       temperature: 0.8,
