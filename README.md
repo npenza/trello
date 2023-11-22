@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trello (AI Integration Clone)
+
+This is a Trello clone that uses OpenAI as a personal assistant. You can add, delete and search for tasks, as well as move them to different columns within your board.
+
+![App Preview](https://i.ibb.co/JmPWbW9/Screenshot-2023-11-23-at-08-17-12-Screenshot.png)
 
 ## Getting Started
 
-First, run the development server:
+Firstly, install the dependencies for the project.
+```bash
+npm  install
+
+# or
+
+yarn  install
+```
+You will need to create a .env file and populate the [project environment variables](#environment-variables-setup).
+
+You can then run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
+npm  run  dev
+
+# or
+
+yarn  dev
+
+```
+  
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables Setup
+This project uses environment variables to connect to the Appwrite database and authorise the API calls to OpenAI. You will need the follow environment variables set up in your local for this application to work. 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+|                |Variable                          |Where to find it?                         |
+|----------------|-------------------------------|-----------------------------|
+|Appwrite Project ID |`NEXT_PUBLIC_APPWRITE_PROJECT_ID`            |This is found when setting up the appwrite project.            |
+|Appwrite Database ID          |`NEXT_PUBLIC_DATABASE_ID`            |Found when setting up the database in the above project.            |
+|Appwrite Todo Collection ID          |`NEXT_PUBLIC_TODOS_COLLECTION_ID`| The ID for the Todo collection created in the Appwrite database. | 
+Storage Bucket ID | `NEXT_PUBLIC_STORAGE_BUCKET_ID` | The ID for the storage bucket, created from Appwrite.
+| Open AI Secret Key | `OPENAI_API_KEY` | Create a secret key in OpenAI Api.
