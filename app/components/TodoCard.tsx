@@ -37,6 +37,7 @@ function TodoCard({
         const url = await getURL(todo.image!);
         if (url) {
           setImageUrl(url.toString());
+          console.log(url.toString())
         }
       };
       fetchImage();
@@ -63,8 +64,7 @@ function TodoCard({
       {/* Add Image here */}
       {todo.image && 
       <div className="h-full w-full rounded-b-md">
-        {/* TODO: Fix Image preview */}
-        {/* <Image alt="image" src={imageUrl!} width={400} height={400} className="w-full object-contain" /> */}
+        <Image alt="" src={imageUrl ? imageUrl : "" } width={400} height={400} className="w-full object-contain" />
       </div>
       }
     </div>
