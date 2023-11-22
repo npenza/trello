@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import { useBoardStore } from "@/store/BoardStore";
 import Column from "./Column";
+import { Modal } from "./Modal";
 
 function Board() {
   const [board, getBoard, setBoardState , updateTodoInDB] = useBoardStore((state) => [
@@ -92,6 +93,7 @@ function Board() {
   };
 
   return (
+    <>
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="column">
         {(provided) => (
@@ -107,6 +109,7 @@ function Board() {
         )}
       </Droppable>
     </DragDropContext>
+    </>
   );
 }
 
