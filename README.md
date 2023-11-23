@@ -2,6 +2,8 @@
 
 This is a Trello clone that uses OpenAI as a personal assistant. You can add, delete and search for tasks, as well as move them to different columns within your board.
 
+[Demo](https://trello-lemon-seven.vercel.app/)
+
 ![App Preview](https://i.ibb.co/JmPWbW9/Screenshot-2023-11-23-at-08-17-12-Screenshot.png)
 
 ## Getting Started
